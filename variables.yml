@@ -1,0 +1,176 @@
+eqasim:
+
+  sampling_rate:
+    description: Sampling rate for the output population
+    value: 0.01
+
+  random_seed:
+    description: Random seed rate for the output population
+    value: 33232432
+
+  regions:
+    description: List of region ids for the domain definition
+    value: []
+
+  departments:
+    description: List of department ids for the domain definition
+    value: [44]
+
+  hts:
+    description: Which household travel survey (HTS) to use
+    value: edgt_44
+    choices: ['egt', 'entd', 'edgt_44', 'edgt_lyon']
+    date: 2015
+
+  bpe:
+    description: The census of services and facilities in France available from INSEE
+    date: 2020
+    link: https://www.insee.fr/fr/statistiques/3568638
+
+  census:
+    description: Census data containing the socio-demographic information, available from INSEE
+    date: 2015
+    link: https://www.insee.fr/fr/statistiques/3625223
+
+  modpro_modsco:
+    description: Origin-destination data for Work and Education purposes, available from INSEE
+    date: 2015
+    link:
+      - https://www.insee.fr/fr/statistiques/3566008
+      - https://www.insee.fr/fr/statistiques/3565982
+
+  population:
+    description: Aggregated population totals, available from INSEE
+    date: 2015
+    link: https://www.insee.fr/fr/statistiques/3627376
+
+  bdtopo:
+    description: Adresse database available from IGN
+    date: 2020
+    link: https://geoservices.ign.fr/bdtopo
+
+  filosofi:
+    description: Income tax data available from INSEE
+    date: 2015
+    link: https://insee.fr/fr/statistiques/3560118
+
+  iris:
+    description: IRIS zoning system available from IGN
+    date: 2017
+    link: https://geoservices.ign.fr/contoursiris
+
+  zoning_codes:
+    description: zoning registry by INSEE that establishes a connection between the identifiers of IRIS, municipalities, departments and regions
+    date: 2017
+    link: https://www.insee.fr/fr/information/2017499
+
+  sirene:
+    description: Enterprise census
+    date: 2021
+    link: https://www.data.gouv.fr/fr/datasets/base-sirene-des-entreprises-et-de-leurs-etablissements-siren-siret/
+
+  gtfs:
+    description: Public transport schedules
+    sources:
+      - value: TAN
+        link: https://transport.data.gouv.fr/datasets/tan-arrets-horaires-et-circuits/
+        date: 2022-03-25
+      - value: Aléop
+        link: https://transport.data.gouv.fr/datasets/reseau-de-transport-regional-aleop-loire-atlantique
+        date: 2022-03-25
+      - value: STRAN
+        link: https://transport.data.gouv.fr/datasets/stran-arrets-horaires-et-lignes-urbaines-et-scolaires-gtfs/
+        date: 2022-03-25
+      - value: Brévibus
+        link: https://transport.data.gouv.fr/datasets/reseau-urbain-brevibus/
+        date: 2022-03-25
+      - value: Guérande
+        link: https://transport.data.gouv.fr/datasets/lignes-arrets-et-horaires-de-transport-pour-cap-atlantique-lila-presquile-gtfs/
+        date: 2022-03-25
+      - value: Zenbus
+        link: https://transport.data.gouv.fr/datasets/horaires-theoriques-et-temps-reel-de-la-navette-du-pont-de-saint-nazaire-gtfs-gtfs-rt/
+        date: 2022-03-25
+      - value: SNCF TER
+        link: https://ressources.data.sncf.com/explore/dataset/sncf-ter-gtfs/information/
+        date: 2022-03-25
+      - value: SNCF Intercités
+        link: https://ressources.data.sncf.com/explore/dataset/sncf-intercites-gtfs/information/
+        date: 2022-03-25
+      - value: SNCF TGV
+        link: https://ressources.data.sncf.com/explore/dataset/horaires-des-train-voyages-tgvinouiouigo/information/
+        date: 2022-03-25
+
+  osm:
+    description: OpenStreetMap data for the road network
+    date: 2022-04-02
+    link: https://download.geofabrik.de/europe/france/pays-de-la-loire.html
+
+  vehicles:
+    description: Parcs au 1er janvier des années 2011 à 2021, selon le genre, l’énergie, la vignette Crit’air, la région, le département, la commune, l’âge, etc.
+    link: https://www.statistiques.developpement-durable.gouv.fr/donnees-sur-le-parc-automobile-francais-au-1er-janvier-2021
+    date : 2015
+
+  pt2matsim:
+    description: Package to convert public transit data from GTFS, HAFAS or OSM to a completely mapped MATSim schedule
+    git: https://github.com/matsim-org/pt2matsim.git
+    version: "21.4"
+    branch: v21.4
+
+  eqasim_java: 
+    description: Java parts of the Eqasim project which extend MATSim and provide functionality to generate the simulation data
+    git: https://github.com/Symexpo/eqasim-java
+    version: "1.3.1"
+    branch: develop
+
+  java:
+    version: 11.0.8
+  
+  maven:
+    version: 3.6.3
+
+noisemodelling:
+
+  version: 4.0.0
+  link: 
+
+  elevation: 
+    description: Where does the buildings data come from
+
+
+  buildings:
+    description: Where does the buildings data come from
+    value: osm
+    choices: ['osm', 'bd-topo']
+    date: 2022-04-02
+    link: https://download.geofabrik.de/europe/france/pays-de-la-loire.html
+
+  receivers:
+    description: How are receivers placed, either chosing the closest 'standard' point on the closest building or chosing a random 'standard' point for the closest building
+    value: closest
+    choices: ['closest', 'random']
+
+  time_period:
+    description: Time step for noise analysis
+    value: 15min
+
+  propagation:
+    description: Noise propagation parameters
+    max_src_dist:
+      description: Maximum source-receiver distance
+      value: 750
+    max_refl_dist:
+      description: Maximum source-reflexion distance
+      value: 50
+    refl_order:
+      description: Order of reflexion
+      value: 1
+    diff_vertical:
+      description: Diffraction on vertical edges
+      value: false
+    diff_horizontal:
+      description: Diffraction on horizontal edges
+      value: true
+  
+sirane:
+
+  # ...
